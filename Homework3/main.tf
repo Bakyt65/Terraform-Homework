@@ -29,7 +29,6 @@ data "aws_ami" "amazon_linux2" {
 resource "aws_instance" "web1" {
   ami           = data.aws_ami.amazon_linux2.id
   instance_type = "t2.micro"
-  availability_zone = "us-east-2c" # Do we need to specify here az, if I am using different subnets in different zones?
   subnet_id = "subnet-01b10247a846df36b"
   key_name = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
@@ -52,7 +51,6 @@ output ec2-1 {
 resource "aws_instance" "web2" {
   ami           = data.aws_ami.amazon_linux2.id
   instance_type = "t2.micro"
-  availability_zone = "us-east-2b" 
   subnet_id = "subnet-01c2612599004c5fb"
   key_name = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
@@ -76,7 +74,6 @@ output ec2-2 {
 resource "aws_instance" "web3" {
   ami           = data.aws_ami.amazon_linux2.id
   instance_type = "t2.micro"
-  availability_zone = "us-east-2a" 
   subnet_id = "subnet-0e17387c5865a8cfc"
   key_name = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
